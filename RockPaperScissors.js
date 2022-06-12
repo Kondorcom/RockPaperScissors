@@ -7,6 +7,7 @@ function computerPlay(){
     // console.log(computerAnswer);
     return computerAnswer;
 }
+
 function caseInsensitive(userInput){
     // console.log(userInput);
     let firstUpperCase = userInput.toUpperCase();
@@ -16,14 +17,13 @@ function caseInsensitive(userInput){
     // console.log(firstUpperCase);
     return firstUpperCase;
 
-
-
 }
-function playRound(playerSelection, computerPlay){
+function playRound(playerSelection, computerInput){
     let playerSelect = caseInsensitive(playerSelection);
     let winner;
     // console.log(playerSelect);
-    let computerSelection = computerPlay();
+    // let computerSelection = computerPlay();
+    let computerSelection = computerInput;
     // console.log('Compute play = ' + computerSelection);
     if (playerSelect === 'Rock'){
         return winner = rockPlay(computerSelection);
@@ -32,7 +32,6 @@ function playRound(playerSelection, computerPlay){
     }   else if (playerSelect === 'Scissors'){
         return winner = scissorsPlay(computerSelection);
     }
-   
 }
 function rockPlay(compSelect){
     if (compSelect === 'Scissors'){
@@ -62,7 +61,37 @@ function scissorsPlay(compSelect){
     return 'You lose! Rock crushes Scissors';
 }   else return 'No es bueno';
 }
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(computerPlay());
-console.log(playRound(playerSelection, computerPlay));
+// const playerSelection = "rock";
+// const computerSelection = computerPlay();
+// console.log(computerPlay());
+// console.log(playRound(playerSelection, computerPlay));
+
+function game(){
+    let playerInput = prompt("Enter: Rock, paper, scissors");  
+    let computerInput = computerPlay();
+    // let computerInput = computerPlay();
+    console.log('Player input: ' + playerInput);
+    console.log('Computer input: ' + computerInput);
+    console.log(checkWinner(playRound(playerInput,computerInput)));
+
+    
+}
+function checkWinner(playRound){
+    console.log('playRound', playRound);
+    let substr = playRound.substring(4,7);
+    console.log('substring: ',substr);
+    const win = 0;
+    const tie = 1;
+    const lose = 2;
+
+    if (playRound === 'Tie'){
+        return tie;
+    }
+    else if ( substr === 'win'){
+        return win;
+    }else {
+        return lose;
+    }
+    
+
+}
