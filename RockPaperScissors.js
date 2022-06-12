@@ -61,29 +61,42 @@ function scissorsPlay(compSelect){
     return 'You lose! Rock crushes Scissors';
 }   else return 'No es bueno';
 }
-// const playerSelection = "rock";
-// const computerSelection = computerPlay();
-// console.log(computerPlay());
-// console.log(playRound(playerSelection, computerPlay));
 
 function game(){
-    let playerInput = prompt("Enter: Rock, paper, scissors");  
-    let computerInput = computerPlay();
-    // let computerInput = computerPlay();
-    console.log('Player input: ' + playerInput);
-    console.log('Computer input: ' + computerInput);
-    console.log(checkWinner(playRound(playerInput,computerInput)));
-
     
+    let numberOfPlayerWins = 0;
+    let numberOfComputerWins = 0;
+    for (let i=0; i<5; i++){
+        let playerInput = prompt("Enter: Rock, paper, scissors");  
+        let computerInput = computerPlay();
+        console.log('Player input: ' + playerInput);
+        console.log('Computer input: ' + computerInput);
+        let checkWins = checkWinnerOfRound(playRound(playerInput,computerInput));
+        if (checkWins === 0){
+            numberOfPlayerWins++;
+        }   else if (checkWins === 2){
+            numberOfComputerWins ++;
+        }
+    }
+    checkWinnerOfGame(numberOfPlayerWins, numberOfComputerWins);
+    console.log('Number of player wins:' + numberOfPlayerWins);
+    console.log('Number of computer wins:' + numberOfComputerWins);
 }
-function checkWinner(playRound){
-    console.log('playRound', playRound);
+function checkWinnerOfGame(numberOfPlayerWins, numberOfComputerWins){
+    if (numberOfComputerWins > numberOfPlayerWins){
+        alert('Computer won');
+    }   else if (numberOfPlayerWins > numberOfComputerWins){
+        alert('You won');
+    }   else{
+        alert('Its a tie');
+    }
+}
+
+function checkWinnerOfRound(playRound){
     let substr = playRound.substring(4,7);
-    console.log('substring: ',substr);
     const win = 0;
     const tie = 1;
     const lose = 2;
-
     if (playRound === 'Tie'){
         return tie;
     }
