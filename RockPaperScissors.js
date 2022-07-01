@@ -1,4 +1,24 @@
 // alert('Hello');
+
+// const rockBtn = document.getElementsByClassName('rock');
+// rockBtn.addEventListener("click", function(){ alert("Hello World!"); }); 
+// rockBtn.addEventListener('click', function(e){
+//     console.log(e);
+// });
+// const rockBtn = document.getElementById('btnRock');
+// rockBtn.addEventListener("click", function(){ alert("Hello World!"); }); 
+
+
+// const rockBtn = document.querySelector('.btn');
+// rockBtn.addEventListener("click", function(){ alert("Hello World!"); }); 
+// rockBtn.addEventListener('click', function(e){
+//         console.log(e);
+//      });
+
+
+
+
+
 function computerPlay(){
     const RPC = ["Rock", "Paper", "Scissors"];
     let randomNumber = Math.floor(Math.random()*3);
@@ -63,14 +83,28 @@ function scissorsPlay(compSelect){
 }
 
 function game(){
+//     let allButtons = document.querySelectorAll('button[class^=btn]');
+//     console.log("Found", allButtons.length, "div which class starts with “button”.");
+
+//     for (let i = 0; i < allButtons.length; i++) {
+//     allButtons[i].addEventListener('click', function() {
+//     console.clear();
+//     console.log("You clicked:", this.innerHTML);
     
+//   });
+// }
+
+
     let numberOfPlayerWins = 0;
     let numberOfComputerWins = 0;
     for (let i=0; i<5; i++){
-        let playerInput = prompt("Enter: Rock, paper, scissors");  
+        //let playerInput = prompt("Enter: Rock, paper, scissors");  
         let computerInput = computerPlay();
-        console.log('Player input: ' + playerInput);
         console.log('Computer input: ' + computerInput);
+        let playerInput = buttonClickFunction();
+        console.log('Player input: ' + playerInput);
+       
+        
         let checkWins = checkWinnerOfRound(playRound(playerInput,computerInput));
         if (checkWins === 0){
             numberOfPlayerWins++;
@@ -81,6 +115,42 @@ function game(){
     checkWinnerOfGame(numberOfPlayerWins, numberOfComputerWins);
     console.log('Number of player wins:' + numberOfPlayerWins);
     console.log('Number of computer wins:' + numberOfComputerWins);
+}
+
+    let allButtons = document.querySelectorAll('button[class^=btn]');
+    console.log("Found", allButtons.length, "div which class starts with “button”.");
+    let computerInput = computerPlay();
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].addEventListener('click', function() {
+        console.clear();
+        console.log("You clicked:", this.innerHTML);
+        let playerInput = this.innerHTML;
+        console.log('Computer input: ' + computerInput);
+        if (document.querySelectorAll('button[class^=btn]').clicked == true){
+            playRound(playerInput,computerInput);
+        }
+        
+        console.log('Player input: ' + playerInput);
+      });
+     
+      
+      
+      
+    }
+
+
+function buttonClickFunction(){
+    
+    let allButtons = document.querySelectorAll('button[class^=btn]');
+    console.log("Found", allButtons.length, "div which class starts with “button”.");
+    for (let i = 0; i < allButtons.length; i++) {
+        allButtons[i].addEventListener('click', function() {
+        console.clear();
+        console.log("You clicked:", this.innerHTML);
+        let playerInput = this.innerHTML;
+      });
+      return playerInput;
+    }
 }
 function checkWinnerOfGame(numberOfPlayerWins, numberOfComputerWins){
     if (numberOfComputerWins > numberOfPlayerWins){
@@ -105,6 +175,4 @@ function checkWinnerOfRound(playRound){
     }else {
         return lose;
     }
-    
-
 }
