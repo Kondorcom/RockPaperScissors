@@ -6,22 +6,25 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+          <!-- <div id="container"></div> -->
         <div class="center">
         <script src="RockPaperScissors.js" defer></script>
         <h1>Rock Paper Scissors</h1>
         
     <div class="buttons">
        
-        <button class="btn rock">Rock</button> 
-        <button class="btn paper">Paper</button> 
-        <button class="btn scissors">Scissors</button> 
+        <button class="btn rock" onclick="startGame('rock');">Rock</button> 
+        <button class="btn paper" onclick="startGame('paper');">Paper</button> 
+        <button class="btn scissors" onclick="startGame('scissors');">Scissors</button> 
     </div>
     <div class="score">
         <div>
             Player score:
+            <div id="container"></div>
         </div>
         <div>
             Computer score:
+            <div id="containerComputer"></div>
         </div>
     </div>
     </div>
