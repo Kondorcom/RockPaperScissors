@@ -1,36 +1,26 @@
-// alert('Hello');
-
-// const rockBtn = document.getElementsByClassName('rock');
-// rockBtn.addEventListener("click", function(){ alert("Hello World!"); }); 
-// rockBtn.addEventListener('click', function(e){
-//     console.log(e);
-// });
-// const rockBtn = document.getElementById('btnRock');
-// rockBtn.addEventListener("click", function(){ alert("Hello World!"); }); 
-
-
-// const rockBtn = document.querySelector('.btn');
-// rockBtn.addEventListener("click", function(){ alert("Hello World!"); }); 
-// rockBtn.addEventListener('click', function(e){
-//         console.log(e);
-//      });
 
 const container = document.querySelector('#container');
-
 const content = document.createElement('div');
 content.classList.add('content');
-const containerComputer = document.querySelector('#containerComputer');
+content.textContent = 0;
+container.appendChild(content);
 
+const containerComputer = document.querySelector('#containerComputer');
 const content2 = document.createElement('div');
-content.classList.add('content2');
+content2.classList.add('content2');
+content2.textContent = 0;
+containerComputer.appendChild(content2);
+
+const resultContainer = document.querySelector('#resultContainer');
+const contentResult = document.createElement('div');
+contentResult.classList.add('contentResult');
+
+resultContainer.appendChild(contentResult);
+// resultContainer.appendChild(contentResult);
+
 let numberOfPlayerWins = 0;
 let numberOfComputerWins = 0;
 
-// content.textContent = 'This is the glorious text-content!';
-
-// container.appendChild(content);
-
-// startGame();
 
 function computerPlay(){
     const RPC = ["Rock", "Paper", "Scissors"];
@@ -67,68 +57,80 @@ function playRound(playerSelection, computerInput){
     }
 }
 function rockPlay(compSelect){
+   
     if (compSelect === 'Scissors'){
+        contentResult.textContent = 'You win! Rock crushes Scissors';
+      
         return 'You win! Rock crushes Scissors';
     }   else if (compSelect === 'Rock'){
+        contentResult.textContent = 'Tie';
         return 'Tie';
     }   else if (compSelect == 'Paper'){
+        contentResult.textContent = 'You lose! Paper covers Rock';
         return 'You lose! Paper covers Rock';
     }   else return 'No es bueno';
+    
 }
 function paperPlay(compSelect){
     if (compSelect === 'Rock'){
+        contentResult.textContent = 'You win! Paper covers Rock';
     return 'You win! Paper covers Rock';
 }   else if (compSelect === 'Paper'){
+    contentResult.textContent = 'Tie';
     return 'Tie';
 }   else if (compSelect === 'Scissors'){
+    contentResult.textContent = 'You lose! Scissors cut Paper';
     return 'You lose! Scissors cut Paper';
 }   else return 'No es bueno';
 
 }
 function scissorsPlay(compSelect){
     if (compSelect === 'Paper'){
+        contentResult.textContent = 'You win! Scissors cut Paper';
     return 'You win! Scissors cut Paper';
 }   else if (compSelect === 'Scissors'){
+    contentResult.textContent = 'Tie';
     return 'Tie';
 }   else if ((compSelect === 'Rock')){
+    contentResult.textContent = 'You lose! Rock crushes Scissors';
     return 'You lose! Rock crushes Scissors';
 }   else return 'No es bueno';
 }
 
-function game(){
-//     let allButtons = document.querySelectorAll('button[class^=btn]');
-//     console.log("Found", allButtons.length, "div which class starts with “button”.");
+// function game(){
+// //     let allButtons = document.querySelectorAll('button[class^=btn]');
+// //     console.log("Found", allButtons.length, "div which class starts with “button”.");
 
-//     for (let i = 0; i < allButtons.length; i++) {
-//     allButtons[i].addEventListener('click', function() {
-//     console.clear();
-//     console.log("You clicked:", this.innerHTML);
+// //     for (let i = 0; i < allButtons.length; i++) {
+// //     allButtons[i].addEventListener('click', function() {
+// //     console.clear();
+// //     console.log("You clicked:", this.innerHTML);
     
-//   });
-// }
+// //   });
+// // }
 
 
-    let numberOfPlayerWins = 0;
-    let numberOfComputerWins = 0;
-    for (let i=0; i<5; i++){
-        //let playerInput = prompt("Enter: Rock, paper, scissors");  
-        let computerInput = computerPlay();
-        console.log('Computer input: ' + computerInput);
-        let playerInput = buttonClickFunction();
-        console.log('Player input: ' + playerInput);
+//     let numberOfPlayerWins = 0;
+//     let numberOfComputerWins = 0;
+//     for (let i=0; i<5; i++){
+//         //let playerInput = prompt("Enter: Rock, paper, scissors");  
+//         let computerInput = computerPlay();
+//         console.log('Computer input: ' + computerInput);
+//         let playerInput = buttonClickFunction();
+//         console.log('Player input: ' + playerInput);
        
         
-        let checkWins = checkWinnerOfRound(playRound(playerInput,computerInput));
-        if (checkWins === 0){
-            numberOfPlayerWins++;
-        }   else if (checkWins === 2){
-            numberOfComputerWins ++;
-        }
-    }
-    checkWinnerOfGame(numberOfPlayerWins, numberOfComputerWins);
-    console.log('Number of player wins:' + numberOfPlayerWins);
-    console.log('Number of computer wins:' + numberOfComputerWins);
-}
+//         let checkWins = checkWinnerOfRound(playRound(playerInput,computerInput));
+//         if (checkWins === 0){
+//             numberOfPlayerWins++;
+//         }   else if (checkWins === 2){
+//             numberOfComputerWins ++;
+//         }
+//     }
+//     checkWinnerOfGame(numberOfPlayerWins, numberOfComputerWins);
+//     console.log('Number of player wins:' + numberOfPlayerWins);
+//     console.log('Number of computer wins:' + numberOfComputerWins);
+// }
 // function firstToFiveWins(){
 
 //     let numberOfPlayerWins = 0;
@@ -196,22 +198,13 @@ let allButtons = document.querySelectorAll('button[class^=btn]');
         allButtons[i].addEventListener('click', function() {
         console.clear();
         console.log("You clicked:", this.innerHTML);
-        let playerInput = this.innerHTML;
-       
-            
-        
-    
-    
-        });
-
-
-        
-    }
+        let playerInput = this.innerHTML;               
+             });
+         }
     if (playerInput === undefined){
 
         console.log("Player input undefined:", playerInputStart);
         firstToFiveWins(playerInput);
-
     }
 
 }   else{
@@ -219,19 +212,15 @@ let allButtons = document.querySelectorAll('button[class^=btn]');
         firstToFiveWins(playerInputStart);
     }
 
-    // if (document.querySelectorAll('button[class^=btn]').clicked == true){
-    //     console.log("first to five clicked :", this.innerHTML);
-        
-    //     firstToFiveWins(playerInput);
-    // }
+    
 }
 
 
 function firstToFiveWins(playerInputClick){
-    
-    
 
+    
     console.log('Player input click from start game: ' + playerInputClick);
+    contentResult.style.color = 'black';
         let computerInput = computerPlay();
         console.log('Computer input: ' + computerInput);
         let checkWins = checkWinnerOfRound(playRound(playerInputClick,computerInput));
@@ -241,13 +230,10 @@ function firstToFiveWins(playerInputClick){
             numberOfComputerWins ++;
         }
 
-    
-        
-        
         content.textContent = numberOfPlayerWins;
-        container.appendChild(content);
+        //container.appendChild(content);
         content2.textContent = numberOfComputerWins;
-        container.appendChild(content2);
+        //container.appendChild(content2);
         console.log('number of player wins: ',numberOfPlayerWins )
         console.log('number of computer wins: ',numberOfComputerWins )
         checkWinner(numberOfPlayerWins,numberOfComputerWins);
@@ -258,41 +244,46 @@ function firstToFiveWins(playerInputClick){
 
 
 
-function buttonClickFunction(){
+// function buttonClickFunction(){
     
-    let allButtons = document.querySelectorAll('button[class^=btn]');
-    console.log("Found", allButtons.length, "div which class starts with “button”.");
-    for (let i = 0; i < allButtons.length; i++) {
-        allButtons[i].addEventListener('click', function() {
-        console.clear();
-        console.log("You clicked:", this.innerHTML);
-        let playerInput = this.innerHTML;
-      });
-      return playerInput;
-    }
-}
-function checkWinnerOfGame(numberOfPlayerWins, numberOfComputerWins){
-    if (numberOfComputerWins > numberOfPlayerWins){
-        alert('Computer won');
-    }   else if (numberOfPlayerWins > numberOfComputerWins){
-        alert('You won');
-    }   else{
-        alert('Its a tie');
-    }
-}
+//     let allButtons = document.querySelectorAll('button[class^=btn]');
+//     console.log("Found", allButtons.length, "div which class starts with “button”.");
+//     for (let i = 0; i < allButtons.length; i++) {
+//         allButtons[i].addEventListener('click', function() {
+//         console.clear();
+//         console.log("You clicked:", this.innerHTML);
+//         let playerInput = this.innerHTML;
+//       });
+//       return playerInput;
+//     }
+// }
+// function checkWinnerOfGame(numberOfPlayerWins, numberOfComputerWins){
+//     if (numberOfComputerWins > numberOfPlayerWins){
+//         alert('Computer won');
+//     }   else if (numberOfPlayerWins > numberOfComputerWins){
+//         alert('You won');
+//     }   else{
+//         alert('Its a tie');
+//     }
+// }
 function checkWinner(numberOfPlayerWins,numberOfComputerWins){
     if (numberOfPlayerWins === 5){
-        alert('You won');
+        contentResult.style.color = 'green';
+        contentResult.textContent = 'Congratulations you won the game';
        restart();
         
     }else if (numberOfComputerWins === 5){
-        alert('Computer won');
+        contentResult.style.color = 'red';
+        contentResult.textContent = 'You lost the game to a computer';
         restart();
     }
 }
 function restart(){
     numberOfComputerWins = 0;
     numberOfPlayerWins = 0;
+    content.textContent = 0;
+    content2.textContent = 0;
+    
 }
 
 function checkWinnerOfRound(playRound){
